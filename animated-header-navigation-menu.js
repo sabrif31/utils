@@ -1,20 +1,50 @@
+/*
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.hotkeys = factory());
 })(this, (function () { 
   'use strict';
+*/
+(function() {
+      'use strict';
+/*
+<div class="menu">
+  <div class="container">
+    <div class="toggle"></div>
+  </div>
   
-  const eltToggle = document.querySelector('.toggle');
-  eltToggle.addEventListener('click', function() {
-    const eltMenu = document.querySelector('.menu');
-    const eltSpan = document.querySelector('span');
-    const eltContainer = document.querySelector('.container');
-    eltMenu.classList.toggle('expanded');
-    eltSpan.classList.toggle('hidden');
-    eltContainer.classList.toggle('close');
-    eltToggle.classList.toggle('close');
-  })
+  <span class="hidden"><a href="#">Home </a></span><span class="hidden"><a href="#">About </a></span><span class="hidden"><a href="#">Info</a></span><span class="hidden"><a href="#">Contact</a></span>
+</div>
+*/
+
+      const menuDiv = document.createElement('div')
+      menuDiv.classList.add('.menu-nav-header')
+      const containerDiv = document.createElement('div')
+      containerDiv.classList.add('container-nav-header')
+      const toggleDiv = document.createElement('div')
+      toggleDiv.classList.add('toggle-nav-header')
+      containerDiv.append(toggleDiv)
+      menuDiv.append(containerDiv)
+
+      const body = document.querySelector('body')
+      body.append(menuDiv)
+  
+      const spanHidden = document.createElement('span')
+      spanHidden.classList.add('hidden-nav-header')
+      spanHidden.innerHTML = 'Test menu'
+      menuDiv.append(spanHidden)
+  
+      const eltToggle = document.querySelector('.toggle-nav-header');
+      eltToggle.addEventListener('click', function() {
+        const eltMenu = document.querySelector('.menu-nav-header');
+        const eltSpan = document.querySelector('span.hidden-nav-header');
+        const eltContainer = document.querySelector('.container-nav-header');
+        eltMenu.classList.toggle('expanded-nav-header');
+        eltSpan.classList.toggle('hidden-nav-header');
+        eltContainer.classList.toggle('close-nav-header');
+        eltToggle.classList.toggle('close-nav-header');
+      })
 }))
 /*
 $('.toggle').on('click', function() {
