@@ -17,7 +17,7 @@
   <span class="hidden"><a href="#">Home </a></span><span class="hidden"><a href="#">About </a></span><span class="hidden"><a href="#">Info</a></span><span class="hidden"><a href="#">Contact</a></span>
 </div>
 */
-
+      console.info('INIT NAV HEADER BOOKMARK')
       const menuDiv = document.createElement('div')
       menuDiv.classList.add('.menu-nav-header')
       const containerDiv = document.createElement('div')
@@ -35,6 +35,7 @@
 
       const body = document.querySelector('body')
       body.append(menuDiv)
+      console.info('ADDED ELEMENT NAV HEADER BOOKMARK')
   
       const eltToggle = document.querySelector('.toggle-nav-header');
       eltToggle.addEventListener('click', function() {
@@ -46,6 +47,7 @@
         eltContainer.classList.toggle('close-nav-header');
         eltToggle.classList.toggle('close-nav-header');
       })
+      console.info('ADDED LISTENER NAV HEADER BOOKMARK')
 }))
 /*
 $('.toggle').on('click', function() {
