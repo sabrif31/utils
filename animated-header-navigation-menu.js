@@ -48,7 +48,7 @@
         eltToggle.classList.toggle('close-nav-header');
       })
       console.info('ADDED LISTENER NAV HEADER BOOKMARK')
-}))
+})
 /*
 $('.toggle').on('click', function() {
   $('.menu').toggleClass('expanded');  
