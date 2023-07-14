@@ -6,7 +6,7 @@ body {
 	 min-height: 100vh;
 	 margin: 0;
 }
- body::before {
+ body:before {
 	 content: '';
 	 background: #e8faff;
 	 height: 50%;
@@ -99,7 +99,7 @@ body {
 	 width: 58.5px;
 	 cursor: pointer;
 }
- .toggle-nav-header::after, .toggle-nav-header::before {
+ .toggle-nav-header:after, .toggle-nav-header:before {
 	 content: '';
 	 background: #1d90f5;
 	 width: 36px;
@@ -112,17 +112,17 @@ body {
 	 left: 0;
 	 transition: 1.3s cubic-bezier(0.53, 0, 0.15, 1.3);
 }
- .toggle-nav-header::before {
+ .toggle-nav-header:before {
 	 top: -30%;
 }
- .toggle-nav-header::after {
+ .toggle-nav-header:after {
 	 top: 30%;
 }
- .toggle-nav-header.close-nav-header::before {
+ .toggle-nav-header.close-nav-header:before {
 	 transform: rotate(-225deg);
 	 top: 0;
 }
- .toggle-nav-header.close-nav-header::after {
+ .toggle-nav-header.close-nav-header:after {
 	 transform: rotate(225deg);
 	 top: 0;
 }
