@@ -18,7 +18,7 @@
 function addNavHeader() {
     console.info('INIT NAV HEADER BOOKMARK')
     const menuDiv = document.createElement('div')
-    menuDiv.classList.add('.menu-nav-header')
+    menuDiv.classList.add('menu-nav-header')
     const containerDiv = document.createElement('div')
     containerDiv.classList.add('container-nav-header')
     const toggleDiv = document.createElement('div')
@@ -26,11 +26,13 @@ function addNavHeader() {
     containerDiv.append(toggleDiv)
     menuDiv.append(containerDiv)
 
-    const spanHidden = document.createElement('span')
-    spanHidden.classList.add('hidden-nav-header')
-    spanHidden.classList.add('span-nav-header')
-    spanHidden.innerHTML = 'Test menu'
-    menuDiv.append(spanHidden)
+		for (var i = 0; i < 3; i++) {
+      const spanHidden = document.createElement('span')
+      spanHidden.classList.add('hidden-nav-header')
+      spanHidden.classList.add('span-nav-header')
+      spanHidden.innerHTML = 'Test menu ' + i
+      menuDiv.append(spanHidden)
+    }
 
     const body = document.querySelector('body')
     body.append(menuDiv)
@@ -39,10 +41,12 @@ function addNavHeader() {
     const eltToggle = document.querySelector('.toggle-nav-header');
     eltToggle.addEventListener('click', function() {
       const eltMenu = document.querySelector('.menu-nav-header');
-      const eltSpan = document.querySelector('span.hidden-nav-header');
+      const eltSpanAll = document.querySelectorAll('.span-nav-header');
       const eltContainer = document.querySelector('.container-nav-header');
       eltMenu.classList.toggle('expanded-nav-header');
-      eltSpan.classList.toggle('hidden-nav-header');
+      for (var i = 0; i < eltSpanAll.length; i++) {
+        eltSpanAll[i].classList.toggle('hidden-nav-header');
+      }
       eltContainer.classList.toggle('close-nav-header');
       eltToggle.classList.toggle('close-nav-header');
     })
