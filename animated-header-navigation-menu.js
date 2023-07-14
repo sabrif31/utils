@@ -16,27 +16,27 @@
 </div>
 */
 function addNavHeader() {
-    console.info('INIT NAV HEADER BOOKMARK')
-    const menuDiv = document.createElement('div')
-    menuDiv.classList.add('menu-nav-header')
-    const containerDiv = document.createElement('div')
-    containerDiv.classList.add('container-nav-header')
-    const toggleDiv = document.createElement('div')
-    toggleDiv.classList.add('toggle-nav-header')
-    containerDiv.append(toggleDiv)
-    menuDiv.append(containerDiv)
+    console.info('INIT NAV HEADER BOOKMARK');
+    const menuDiv = document.createElement('div');
+    menuDiv.classList.add('menu-nav-header');
+    const containerDiv = document.createElement('div');
+    containerDiv.classList.add('container-nav-header');
+    const toggleDiv = document.createElement('div');
+    toggleDiv.classList.add('toggle-nav-header');
+    containerDiv.append(toggleDiv);
+    menuDiv.append(containerDiv);
 
 		for (var i = 0; i < 3; i++) {
-      const spanHidden = document.createElement('span')
-      spanHidden.classList.add('hidden-nav-header')
-      spanHidden.classList.add('span-nav-header')
-      spanHidden.innerHTML = 'Test menu ' + i
-      menuDiv.append(spanHidden)
+      const spanHidden = document.createElement('span');
+      spanHidden.classList.add('hidden-nav-header');
+      spanHidden.classList.add('span-nav-header');
+      spanHidden.innerHTML = 'Test menu ' + i;
+      menuDiv.append(spanHidden);
     }
 
-    const body = document.querySelector('body')
-    body.append(menuDiv)
-    console.info('ADDED ELEMENT NAV HEADER BOOKMARK')
+    const body = document.querySelector('body');
+    body.append(menuDiv);
+    console.info('ADDED ELEMENT NAV HEADER BOOKMARK');
 
     const eltToggle = document.querySelector('.toggle-nav-header');
     eltToggle.addEventListener('click', function() {
@@ -50,7 +50,7 @@ function addNavHeader() {
       eltContainer.classList.toggle('close-nav-header');
       eltToggle.classList.toggle('close-nav-header');
     })
-    console.info('ADDED LISTENER NAV HEADER BOOKMARK')
+    console.info('ADDED LISTENER NAV HEADER BOOKMARK');
 }
 /*
 $('.toggle').on('click', function() {
