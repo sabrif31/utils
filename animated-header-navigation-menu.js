@@ -1,21 +1,3 @@
-/*
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.hotkeys = factory());
-})(this, (function () { 
-  'use strict';
-*/
-/*
-<div class="menu">
-  <div class="container">
-    <div class="toggle"></div>
-  </div>
-  
-  <span class="hidden"><a href="#">Home </a></span><span class="hidden"><a href="#">About </a></span><span class="hidden"><a href="#">Info</a></span><span class="hidden"><a href="#">Contact</a></span>
-</div>
-*/
-
 class NavHeaderYTBookmark {
         constructor(list) {
 		this.list = list
@@ -23,7 +5,6 @@ class NavHeaderYTBookmark {
         }
 	
         addButtonToDOM() {
-		console.info('INIT NAV HEADER BOOKMARK');
 		const menuDiv = document.createElement('div');
 		menuDiv.classList.add('menu-nav-header');
 		const containerDiv = document.createElement('div');
@@ -43,7 +24,6 @@ class NavHeaderYTBookmark {
 	
 		const body = document.querySelector('body');
 		body.append(menuDiv);
-		console.info('ADDED ELEMENT NAV HEADER BOOKMARK');
 		
 		const eltToggle = document.querySelector('.toggle-nav-header');
 		eltToggle.addEventListener('click', function() {
@@ -57,14 +37,5 @@ class NavHeaderYTBookmark {
 			eltContainer.classList.toggle('close-nav-header');
 			eltToggle.classList.toggle('close-nav-header');
 		})
-		console.info('ADDED LISTENER NAV HEADER BOOKMARK');
         }
 }
-
-/*
-$('.toggle').on('click', function() {
-  $('.menu').toggleClass('expanded');  
-  $('span').toggleClass('hidden');  
-  $('.container , .toggle').toggleClass('close');  
-});
-*/
