@@ -26,14 +26,15 @@
       toggleDiv.classList.add('toggle-nav-header')
       containerDiv.append(toggleDiv)
       menuDiv.append(containerDiv)
-
-      const body = document.querySelector('body')
-      body.append(menuDiv)
   
       const spanHidden = document.createElement('span')
       spanHidden.classList.add('hidden-nav-header')
+      spanHidden.classList.add('span-nav-header')
       spanHidden.innerHTML = 'Test menu'
       menuDiv.append(spanHidden)
+
+      const body = document.querySelector('body')
+      body.append(menuDiv)
   
       const eltToggle = document.querySelector('.toggle-nav-header');
       eltToggle.addEventListener('click', function() {
