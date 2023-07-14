@@ -40,6 +40,7 @@ body:before {
 .menu-nav-header.expanded-nav-header {
 	width: 200px;
 	height: 300px;	
+    overflow: auto;
 }
 span.span-nav-header {
 	 padding: 9px;
