@@ -6,8 +6,6 @@
 })(this, (function () { 
   'use strict';
 */
-(function() {
-      'use strict';
 /*
 <div class="menu">
   <div class="container">
@@ -17,8 +15,9 @@
   <span class="hidden"><a href="#">Home </a></span><span class="hidden"><a href="#">About </a></span><span class="hidden"><a href="#">Info</a></span><span class="hidden"><a href="#">Contact</a></span>
 </div>
 */
-
-  function addNavHeader = {
+(function() {
+  'use strict';
+  function addNavHeader() {
       console.info('INIT NAV HEADER BOOKMARK')
       const menuDiv = document.createElement('div')
       menuDiv.classList.add('.menu-nav-header')
