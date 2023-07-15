@@ -2,7 +2,6 @@
 #btn-bookmark {
   position: fixed;
   top: 15px;
-  right: 0px;
   top: calc(100%/2);
   right: 0;
   cursor: pointer;
