@@ -74,6 +74,11 @@
   background-color: rgba(52, 56, 56, 0.2);
 }
 
+#items-bookmark .item-bookmark a{
+  color: #343838;
+  text-decoration: none;
+}
+
 #btn-bookmark, #btn-bookmark * {
   will-change: transform;
 }
