@@ -25,7 +25,7 @@ body:before {
     width: 70.75px;
 	 padding: 12px;
 	 border-radius: 6px;
-	 overflow: hidden;
+	 /*overflow: hidden;*/
 	 position: relative;
 	 box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
 	 transition: 1.3s cubic-bezier(0.53, 0, 0.15, 1.3);
@@ -33,14 +33,13 @@ body:before {
     top: 0px;
     left: 407px;
     cursor: pointer;
-    	 cursor: pointer;
     z-index: 2023;
 }
 
 .menu-nav-header.expanded-nav-header {
 	width: 200px;
 	height: 300px;	
-    overflow: auto;
+    /*overflow: auto;*/
 }
 span.span-nav-header {
 	 padding: 9px;
@@ -62,6 +61,12 @@ span.span-nav-header:nth-of-type(3) {
 }
 span.span-nav-header:nth-of-type(4) {
 	 transition-delay: 0.7s;
+}
+span.span-nav-header:nth-of-type(5) {
+	 transition-delay: 0.8s;
+}
+span.span-nav-header:nth-of-type(6) {
+	 transition-delay: 0.9s;
 }
 span.hidden-nav-header {
 	 width: 0;
