@@ -37,7 +37,7 @@ class SideBar {
 		for (var i = 0; i < this.list.length; i++) {
 			const itemNode = document.createElement('div');
 			itemNode.classList.add('item-bookmark');
-			itemNode.innerHTML = this.list[i];
+			itemNode.innerHTML = `<a href="https://www.youtube.com/watch?v=${this.list[i]}">${this.list[i]}</a>`;
 			itemsNode.append(itemNode);
 		}
     
