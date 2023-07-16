@@ -76,6 +76,9 @@
   color: #343838 !important;
   text-decoration: none;
 }
+#items-bookmark .item-bookmark:hover a {
+  color: #757b7b !important;
+}
 
 #btn-bookmark, #btn-bookmark * {
   will-change: transform;
