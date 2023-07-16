@@ -1,3 +1,4 @@
+(function() {
 class SideBar {
   constructor(list) {
     this.list = list;
@@ -44,3 +45,4 @@ class SideBar {
   }
 
 }
+})
