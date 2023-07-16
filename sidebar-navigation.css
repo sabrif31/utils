@@ -75,6 +75,7 @@
   align-items: center;
   flex-grow: 1;
   width: 100%;
+  overflow-x: hidden;
 }
 
 #box-bookmark.active {
@@ -103,7 +104,6 @@
 #items-bookmark .item-bookmark:hover {
   background-color: rgba(52, 56, 56, 0.2);
   border-radius: 5px 0 0 5px;
-  font-size: 1.4em;
 }
 
 #items-bookmark .item-bookmark a {
