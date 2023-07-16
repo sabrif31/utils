@@ -17,13 +17,14 @@
 }
 
 #btn-bookmark.active {
-  right: 230px;
+    right: 230px;
 }
 #btn-bookmark.active div {
-  background-color: #343838;
+  background-color: red;
 }
 #btn-bookmark.active #top {
   transform: translateY(10px) rotate(-135deg);
+  margin-top: 8px;
 }
 #btn-bookmark.active #middle {
   opacity: 0;
