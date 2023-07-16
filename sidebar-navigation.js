@@ -25,11 +25,6 @@ class SideBar {
           sidebarBtn.classList.toggle('active');
           sidebarBox.classList.toggle('active');
           sidebarContainer.classList.toggle('active');
-          // Animate link title
-          const textWrapper = document.querySelectorAll('#items-bookmark .item-bookmark a');
-          textWrapper.forEach(item => {
-              item.innerHTML = item.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-          })
           /*
           .add({
               targets: '.ml12 .letter',
@@ -46,16 +41,23 @@ class SideBar {
               elements.push('.items-bookmark .item-bookmark-anime-' + i + ' a')
           }
           */
-          var elements = document.querySelectorAll('#items-bookmark .item-bookmark a .letter');
-          this.anime.timeline({ loop: false, duration: 500 }).add({
-              targets: elements,
-              translateX: [40,0],
-              translateZ: 0,
-              opacity: [0,1],
-              easing: "easeOutExpo",
-              duration: 500,
-              delay: (el, i) => 200 + 30 * i
-          });
+          if (sidebarBtn.classList.contains('active')) {
+              // Animate link title
+              const textWrapper = document.querySelectorAll('#items-bookmark .item-bookmark a');
+              textWrapper.forEach(item => {
+                  item.innerHTML = item.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+              })
+              var elements = document.querySelectorAll('#items-bookmark .item-bookmark a .letter');
+              this.anime.timeline({ loop: false, duration: 500 }).add({
+                  targets: elements,
+                  translateX: [40,0],
+                  translateZ: 0,
+                  opacity: [0,1],
+                  easing: "easeOutExpo",
+                  duration: 500,
+                  delay: (el, i) => 5 * i // 200 + 30
+              });
+          }
       });
 
       /*
