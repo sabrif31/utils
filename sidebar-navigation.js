@@ -41,7 +41,7 @@ class SideBar {
           })
           */
           this.anime.timeline({loop: false}).add({
-              targets: '#items-bookmark .item-bookmark:hover a .letter',
+              targets: '#items-bookmark .item-bookmark a .letter',
               translateX: [40,0],
               translateZ: 0,
               opacity: [0,1],
