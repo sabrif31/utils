@@ -40,8 +40,15 @@ class SideBar {
               delay: (el, i) => 100 + 30 * i
           })
           */
-          this.anime.timeline({loop: false}).add({
-              targets: '#items-bookmark .item-bookmark a .letter',
+          /*
+          let elements = []
+          for (var i = 0; i < this.list.length; i++) {
+              elements.push('.items-bookmark .item-bookmark-anime-' + i + ' a')
+          }
+          */
+          var elements = document.querySelectorAll('#items-bookmark .item-bookmark a .letter');
+          this.anime.timeline({ loop: false, duration: 500 }).add({
+              targets: elements,
               translateX: [40,0],
               translateZ: 0,
               opacity: [0,1],
@@ -67,6 +74,7 @@ class SideBar {
 		for (var i = 0; i < this.list.length; i++) {
 			const itemNode = document.createElement('div');
 			itemNode.classList.add('item-bookmark');
+			itemNode.classList.add('item-bookmark-anime-' + i);
 			itemNode.innerHTML = `<a class="ml12" href="https://www.youtube.com/watch?v=${this.list[i].id}">${this.list[i].title}</a>`;
 			itemsNode.append(itemNode);
 		}
