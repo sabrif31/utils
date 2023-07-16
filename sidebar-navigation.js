@@ -1,4 +1,3 @@
-(function() {
 class SideBar {
   constructor(list) {
     this.list = list;
@@ -45,4 +44,4 @@ class SideBar {
   }
 
 }
-})
+module.exports = SideBar;
