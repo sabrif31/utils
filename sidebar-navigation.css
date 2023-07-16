@@ -66,6 +66,9 @@
   font-size: 1.3em;
   padding: 15px 0px 15px 60px;
   transition: all 250ms;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #items-bookmark .item-bookmark:hover {
   background-color: rgba(52, 56, 56, 0.2);
