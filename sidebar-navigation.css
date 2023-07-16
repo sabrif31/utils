@@ -112,7 +112,15 @@
 }
 #items-bookmark .item-bookmark:hover a {
     color: #FFF !important;
+    opacity: 0; /* animateJS */
 }
+
+/* BEGIN animateJS */
+#items-bookmark .item-bookmark:hover a .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+/* END animateJS */
 
 #btn-bookmark, #btn-bookmark * {
   will-change: transform;

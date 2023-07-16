@@ -1,6 +1,7 @@
 class SideBar {
-  constructor(list) {
+  constructor(list, anime) {
     this.list = list;
+    this.anime = anime;
     this.sidebar = `<div class='sidebar-container'>
     <div id="btn-container-bookmark">
       <div id="btn-bookmark">
@@ -21,9 +22,33 @@ class SideBar {
       const sidebarBox = document.querySelector('#box-bookmark');
       const sidebarContainer = document.querySelector('.sidebar-container');
       sidebarBtn.addEventListener('click', event => {
-        sidebarBtn.classList.toggle('active');
-        sidebarBox.classList.toggle('active');
-        sidebarContainer.classList.toggle('active');
+          sidebarBtn.classList.toggle('active');
+          sidebarBox.classList.toggle('active');
+          sidebarContainer.classList.toggle('active');
+          // Animate link title
+          const textWrapper = document.querySelectorAll('#items-bookmark .item-bookmark a');
+          textWrapper.forEach(item => {
+              item.innerHTML = item.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+          })
+          /*
+          .add({
+              targets: '.ml12 .letter',
+              translateX: [0,-30],
+              opacity: [1,0],
+              easing: "easeInExpo",
+              duration: 500,
+              delay: (el, i) => 100 + 30 * i
+          })
+          */
+          this.anime.timeline({loop: false}).add({
+              targets: '#items-bookmark .item-bookmark:hover a .letter',
+              translateX: [40,0],
+              translateZ: 0,
+              opacity: [0,1],
+              easing: "easeOutExpo",
+              duration: 500,
+              delay: (el, i) => 200 + 30 * i
+          });
       });
 
       /*
@@ -42,7 +67,7 @@ class SideBar {
 		for (var i = 0; i < this.list.length; i++) {
 			const itemNode = document.createElement('div');
 			itemNode.classList.add('item-bookmark');
-			itemNode.innerHTML = `<a href="https://www.youtube.com/watch?v=${this.list[i].id}">${this.list[i].title}</a>`;
+			itemNode.innerHTML = `<a class="ml12" href="https://www.youtube.com/watch?v=${this.list[i].id}">${this.list[i].title}</a>`;
 			itemsNode.append(itemNode);
 		}
   }
