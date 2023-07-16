@@ -28,7 +28,6 @@ class SideBar {
         }
       });
       */
-    
     this.addButtonToDOM = this.addButtonToDOM.bind(this);
   }
 
@@ -37,11 +36,9 @@ class SideBar {
 		for (var i = 0; i < this.list.length; i++) {
 			const itemNode = document.createElement('div');
 			itemNode.classList.add('item-bookmark');
-			itemNode.innerHTML = `<a href="https://www.youtube.com/watch?v=${this.list[i]}">${this.list[i]}</a>`;
+			itemNode.innerHTML = `<a href="https://www.youtube.com/watch?v=${this.list[i].id}">${this.list[i].title}</a>`;
 			itemsNode.append(itemNode);
 		}
-    
   }
 
 }
-module.exports = SideBar;
