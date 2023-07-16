@@ -64,7 +64,7 @@
   position: relative;
   cursor: pointer;
   font-size: 2em;
-  padding: 15px 30px;
+  padding: 15px 60px;
   transition: all 250ms;
 }
 #items-bookmark .item-bookmark:hover {
