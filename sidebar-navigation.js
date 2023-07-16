@@ -1,23 +1,29 @@
 class SideBar {
   constructor(list) {
     this.list = list;
-    this.sidebar = `<div id="btn-bookmark">
-		<div id='top'></div>
-		<div id='middle'></div>
-		<div id='bottom'></div>
-</div>
-<div id="box-bookmark">
-		<div id="items-bookmark">
-		</div>
-</div>`;
+    this.sidebar = `<div class='sidebar-container'>
+    <div id="btn-container-bookmark">
+      <div id="btn-bookmark">
+        <div id='top'></div>
+        <div id='middle'></div>
+        <div id='bottom'></div>
+      </div>
+    </div>
+    <div id="box-bookmark">
+        <div id="items-bookmark">
+        </div>
+    </div>
+  </div>`;
 
     document.body.insertAdjacentHTML( 'beforeend', this.sidebar );
 
       const sidebarBtn = document.querySelector('#btn-bookmark');
       const sidebarBox = document.querySelector('#box-bookmark');
+      const sidebarContainer = document.querySelector('.sidebar-container');
       sidebarBtn.addEventListener('click', event => {
         sidebarBtn.classList.toggle('active');
         sidebarBox.classList.toggle('active');
+        sidebarContainer.classList.toggle('active');
       });
 
       /*
