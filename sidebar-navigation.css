@@ -63,12 +63,11 @@
 #items-bookmark .item-bookmark {
   position: relative;
   cursor: pointer;
-  font-size: 2em;
-  padding: 15px 60px;
+  font-size: 1.3em;
+  padding: 15px 0px 15px 60px;
   transition: all 250ms;
 }
 #items-bookmark .item-bookmark:hover {
-  padding: 15px 60px;
   background-color: rgba(52, 56, 56, 0.2);
 }
 
