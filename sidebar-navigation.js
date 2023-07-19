@@ -18,56 +18,56 @@ class SideBar {
 
     document.body.insertAdjacentHTML( 'beforeend', this.sidebar );
 
-      const sidebarBtn = document.querySelector('#btn-bookmark');
-      const sidebarBox = document.querySelector('#box-bookmark');
-      const sidebarContainer = document.querySelector('.sidebar-container');
-      sidebarBtn.addEventListener('click', event => {
-          sidebarBtn.classList.toggle('active');
-          sidebarBox.classList.toggle('active');
-          sidebarContainer.classList.toggle('active');
-          /*
-          .add({
-              targets: '.ml12 .letter',
-              translateX: [0,-30],
-              opacity: [1,0],
-              easing: "easeInExpo",
-              duration: 500,
-              delay: (el, i) => 100 + 30 * i
-          })
-          */
-          /*
-          let elements = []
-          for (var i = 0; i < this.list.length; i++) {
-              elements.push('.items-bookmark .item-bookmark-anime-' + i + ' a')
-          }
-          */
-          if (sidebarBtn.classList.contains('active')) {
-              // Animate link title
-              const textWrapper = document.querySelectorAll('#items-bookmark .item-bookmark a');
-              textWrapper.forEach(item => {
-                  item.innerHTML = item.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-              })
-              var elements = document.querySelectorAll('#items-bookmark .item-bookmark a .letter');
-              this.anime.timeline({ loop: false, duration: 500 }).add({
-                  targets: elements,
-                  translateX: [40,0],
-                  translateZ: 0,
-                  opacity: [0,1],
-                  easing: "easeOutExpo",
-                  duration: 500,
-                  delay: (el, i) => 5 * i // 200 + 30
-              });
-          }
-      });
-
-      /*
-      document.body.addEventListener('click', event => {
-        if (sidebarBox.classList.contains('active')) {
-          sidebarBtn.classList.remove('active');
-          sidebarBox.classList.remove('active');
+    const sidebarBtn = document.querySelector('#btn-bookmark');
+    const sidebarBox = document.querySelector('#box-bookmark');
+    const sidebarContainer = document.querySelector('.sidebar-container');
+    sidebarBtn.addEventListener('click', event => {
+        sidebarBtn.classList.toggle('active');
+        sidebarBox.classList.toggle('active');
+        sidebarContainer.classList.toggle('active');
+        /*
+        .add({
+            targets: '.ml12 .letter',
+            translateX: [0,-30],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 500,
+            delay: (el, i) => 100 + 30 * i
+        })
+        */
+        /*
+        let elements = []
+        for (var i = 0; i < this.list.length; i++) {
+            elements.push('.items-bookmark .item-bookmark-anime-' + i + ' a')
         }
-      });
-      */
+        */
+        if (sidebarBtn.classList.contains('active')) {
+            // Animate link title
+            const textWrapper = document.querySelectorAll('#items-bookmark .item-bookmark a');
+            textWrapper.forEach(item => {
+                item.innerHTML = item.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+            })
+            var elements = document.querySelectorAll('#items-bookmark .item-bookmark a .letter');
+            this.anime.timeline({ loop: false, duration: 500 }).add({
+                targets: elements,
+                translateX: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 500,
+                delay: (el, i) => 5 * i // 200 + 30
+            });
+        }
+    });
+
+    /*
+    document.body.addEventListener('click', event => {
+      if (sidebarBox.classList.contains('active')) {
+        sidebarBtn.classList.remove('active');
+        sidebarBox.classList.remove('active');
+      }
+    });
+    */
     this.addButtonToDOM = this.addButtonToDOM.bind(this);
   }
 
