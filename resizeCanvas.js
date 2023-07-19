@@ -83,6 +83,6 @@
         window.canvasUtils = canvasUtils;
     }
     
-  return resizeCanvas;
+  return canvasUtils;
   
 }));
