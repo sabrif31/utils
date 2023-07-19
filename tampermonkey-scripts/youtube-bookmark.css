@@ -1,235 +1,235 @@
 
 #bookmark-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex-direction: row-reverse;
-    position: absolute;
-    right: 0;
-    z-index: 305;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+  position: absolute;
+  right: 0;
+  z-index: 305;
 }
 #bookmark, #bookmark-add-button {
-    font-size: 12px;
-    height:32px !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    transition: 0.1s;
-    opacity: 0.7;
-    transform: scale(1);
+  font-size: 12px;
+  height:32px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 0.1s;
+  opacity: 0.7;
+  transform: scale(1);
 }
 #bookmark:hover, #bookmark-add-button:hover {
-    opacity: 1;
-    transform: scale(1.1);
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 #bookmark-name {
-    font-size: 12px;
-    background-color: transparent;
-    border: 1px solid #313131;
-    border-radius: 5px;
-    height: 28px !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-    padding-left: 5px;
-    color: #c7c7c7;
+  font-size: 12px;
+  background-color: transparent;
+  border: 1px solid #313131;
+  border-radius: 5px;
+  height: 28px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  padding-left: 5px;
+  color: #c7c7c7;
 }
 #bookmark-form {
-    display: flex;
-    align-items: center;
-    visibility: hidden;
-    opacity: 0;
-    width: 0;
-    transition: visibility 0.25s, opacity 0.25s, width 0.1s;
+  display: flex;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  width: 0;
+  transition: visibility 0.25s, opacity 0.25s, width 0.1s;
 }
 
 #bookmark-add-button[disabled] {
-    opacity: 0.2;
+  opacity: 0.2;
 }
 
 
 .bookmark-select-menu {
-    color: rgb(69, 69, 69) !important;
-    background-color: transparent;
-    border: 1px solid #2f2f2f;
-    border-radius: 5px;
-    min-width:135px;
-    cursor:pointer;
-    height:32px !important;
-    font-size: 12px;
-    max-width: 135px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    text-align: left;
-    vertical-align: middle;
+  color: rgb(69, 69, 69) !important;
+  background-color: transparent;
+  border: 1px solid #2f2f2f;
+  border-radius: 5px;
+  min-width:135px;
+  cursor:pointer;
+  height:32px !important;
+  font-size: 12px;
+  max-width: 135px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  vertical-align: middle;
 }
 .bookmark-select-menu .bookmark-select-btn {
-  display: flex;
-  height: 32px;
-  font-size: 12px;
-  font-weight: 400;
-  border-radius: 8px;
-  align-items: center;
-  cursor: pointer;
-  justify-content: space-between;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  padding-left:5px;
-  position: relative;
-  color: #c7c7c7;
+display: flex;
+height: 32px;
+font-size: 12px;
+font-weight: 400;
+border-radius: 8px;
+align-items: center;
+cursor: pointer;
+justify-content: space-between;
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+padding-left:5px;
+position: relative;
+color: #c7c7c7;
 }
 
 .bookmark-select-menu .bookmark-option-text {
-    display: flex;
-    align-items: center;
-    color: #c7c7c7;
+  display: flex;
+  align-items: center;
+  color: #c7c7c7;
 }
 .bookmark-select-menu .bookmark-options .bookmark-option-text svg {
-    position: absolute;
-    right: 0;
+  position: absolute;
+  right: 0;
 }
 .bookmark-select-menu .bookmark-option-text svg {
-  transform: rotate(0deg);
-  transition: 0.3s;
+transform: rotate(0deg);
+transition: 0.3s;
 }
 .bookmark-select-menu.active .bookmark-option-text svg {
-  transform: rotate(90deg);
+transform: rotate(90deg);
 }
 .bookmark-select-menu .bookmark-options .bookmark-option-text svg path {
-    transition: 0.3s;
+  transition: 0.3s;
 }
 .bookmark-select-menu .bookmark-options .bookmark-option-text svg:hover path {
-    fill: #ff0000;
-    stroke: #ff0000 !important;
-    transition: 0.3s;
+  fill: #ff0000;
+  stroke: #ff0000 !important;
+  transition: 0.3s;
 }
 .bookmark-select-menu .bookmark-select-btn .bookmark-option-text svg {
-  margin-left: 5px;
-  transition: transform 0.3s;
-  position: absolute;
-  right: 0px;
+margin-left: 5px;
+transition: transform 0.3s;
+position: absolute;
+right: 0px;
 }
 
 .bookmark-select-menu .bookmark-options {
-  /*overflow-y: auto;*/
-  max-height: 295px;
-  margin-top: 4px;
-  left: -5px;
-  /*border-radius: 0 0 8px 8px;*/
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  animation-name: fadeInDown;
-  -webkit-animation-name: fadeInDown;
-  animation-duration: 0.35s;
-  animation-fill-mode: both;
-  -webkit-animation-duration: 0.35s;
-  -webkit-animation-fill-mode: both;
-  background-color: #181a1b;
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  width: 100%;
+/*overflow-y: auto;*/
+max-height: 295px;
+margin-top: 4px;
+left: -5px;
+/*border-radius: 0 0 8px 8px;*/
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+animation-name: fadeInDown;
+-webkit-animation-name: fadeInDown;
+animation-duration: 0.35s;
+animation-fill-mode: both;
+-webkit-animation-duration: 0.35s;
+-webkit-animation-fill-mode: both;
+background-color: #181a1b;
+display: none;
+flex-direction: column;
+position: absolute;
+width: 100%;
 }
 .bookmark-select-menu .bookmark-options .bookmark-option {
-  display: flex;
-  height: 36px;
-  cursor: pointer;
-  align-items: center;
-  padding-left: 5px;
-  border-radius: 8px;
-  transition: color 0.3s, background 0.3s;
+display: flex;
+height: 36px;
+cursor: pointer;
+align-items: center;
+padding-left: 5px;
+border-radius: 8px;
+transition: color 0.3s, background 0.3s;
 }
 .bookmark-select-menu .bookmark-options .bookmark-option:hover {
-  background: #1e1e1e;
-  color: #252424;
+background: #1e1e1e;
+color: #252424;
 }
 
 .bookmark-select-menu .bookmark-options .bookmark-option:hover .bookmark-option-text {
-  color: #ffffff;
+color: #ffffff;
 }
 
 .bookmark-select-menu .bookmark-options .bookmark-option i {
-  font-size: 25px;
-  margin-right: 12px;
+font-size: 25px;
+margin-right: 12px;
 }
 
 .bookmark-select-menu.active .bookmark-select-btn i {
-  transform: rotate(-180deg);
-  transition: 0.3s;
+transform: rotate(-180deg);
+transition: 0.3s;
 }
 
 .bookmark-select-menu .bookmark-option-text .selected-text {
-  max-width: 110px;
-  text-overflow: ellipsis;
-  display: block;
-  overflow: hidden;
-  color: #c7c7c7;
+max-width: 110px;
+text-overflow: ellipsis;
+display: block;
+overflow: hidden;
+color: #c7c7c7;
 }
 
 .bookmark-select-menu.active .bookmark-options {
-  display: block;
-  opacity: 0;
-  z-index: 10;
-  animation-name: fadeInUp;
-  -webkit-animation-name: fadeInUp;
-  animation-duration: 0.4s;
-  animation-fill-mode: both;
-  -webkit-animation-duration: 0.4s;
-  -webkit-animation-fill-mode: both;
-  display: flex;
+display: block;
+opacity: 0;
+z-index: 10;
+animation-name: fadeInUp;
+-webkit-animation-name: fadeInUp;
+animation-duration: 0.4s;
+animation-fill-mode: both;
+-webkit-animation-duration: 0.4s;
+-webkit-animation-fill-mode: both;
+display: flex;
 }
 
 @keyframes fadeInUp {
-  from {
-    transform: translate3d(0, 30px, 0);
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
+from {
+  transform: translate3d(0, 30px, 0);
+}
+to {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
 }
 @keyframes fadeInDown {
-  from {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-  to {
-    transform: translate3d(0, 20px, 0);
-    opacity: 0;
-  }
+from {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+to {
+  transform: translate3d(0, 20px, 0);
+  opacity: 0;
+}
 }
 .no-cursor {
-     pointer-events: none;
+   pointer-events: none;
 }
 
 #download-link {
-    background-color: #000000d9;
-   border: none;
-   padding: 8px;
-   border-radius: 0px 0px 5px 5px;
-   cursor: pointer;
-   color: #c5c5c5;
-   position:absolute;
-   left: 0%;
-   top: 0%;
-   z-index: 2023;
-   transition: 0.2s;
+  background-color: #000000d9;
+ border: none;
+ padding: 8px;
+ border-radius: 0px 0px 5px 5px;
+ cursor: pointer;
+ color: #c5c5c5;
+ position:absolute;
+ left: 0%;
+ top: 0%;
+ z-index: 2023;
+ transition: 0.2s;
 }
 #download-link:hover {
-   border-radius: 0px 0px 5px 5px;
-   cursor: pointer;
-   color: #ffffff;
+ border-radius: 0px 0px 5px 5px;
+ cursor: pointer;
+ color: #ffffff;
 }
 #capture-video-thumbnail {
-   position:fixed;
-   top: 0;
-   right: -270px;
-   transform: translateX(270px);
-   z-index: 2026;
-   opacity: 0;
-   /*transition: 2s;*/
+ position:fixed;
+ top: 0;
+ right: -270px;
+ transform: translateX(270px);
+ z-index: 2026;
+ opacity: 0;
+ /*transition: 2s;*/
 }
