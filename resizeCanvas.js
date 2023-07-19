@@ -37,6 +37,15 @@
 
     function canvasUtils() {
         console.log('INIT')
+        _downKeys = [];
+        var mods = [];
+        var scope = 'all';
+        var element = document;
+        var i = 0;
+        var keyup = false;
+        var keydown = true;
+        var splitKey = '+';
+        var capture = false;
     }
   
     var _api = {
