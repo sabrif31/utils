@@ -1,3 +1,15 @@
+/**
+ *  <div class="bookmark-select-menu">
+ *      <div class="bookmark-select-btn">
+ *      <span class="bookmark-option-text"><span class="selected-text">Select a bookmark</span> ${arrowSvg}</span>
+ *      <i class="bx bx-chevron-down"></i>
+ *      </div>
+ *      <ul class="bookmark-options">
+ *          <li class="bookmark-option"></li>
+ *      </ul>
+ *  </div>
+ *  const myDropdownMenu = new DropdownMenu('.bookmark-select-btn', '.bookmark-select-menu', '.bookmark-option', '.bookmark-options', videoPlayer);
+ */
 class DropdownMenu {
     constructor(dropdownButtonSelector, dropdownListSelector, dropdownItemSelector, dropdownItemsUl, videoPlayer) {
         this.dropdownButton = document.querySelector(dropdownButtonSelector);
