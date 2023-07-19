@@ -419,7 +419,13 @@
                color: #ffffff;
            }
            #capture-video-thumbnail {
-               transition: 2s;
+               position:fixed;
+               top: 0;
+               right: -270px;
+               transform: translateX(270px);
+               z-index: 2024;
+               opacity: 0;
+               /*transition: 2s;*/
            }
             `);
 
@@ -609,7 +615,7 @@
     }
 
 
-    document.body.insertAdjacentHTML('beforeend', `<canvas width="480" height="270" id="capture-video-thumbnail" style='position:absolute; top: 0; right: 0; z-index: 2024;' />`);
+    document.body.insertAdjacentHTML('beforeend', `<canvas width="480" height="270" id="capture-video-thumbnail" />`);
     document.body.insertAdjacentHTML('beforeend', `<div id="block-body" style='position:absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2025; background-color: rgba(0,0,0,0.5); display: none;' />`);
     document.body.insertAdjacentHTML('beforeend', `<button id='download-link'>Test capture</button>`);
 
@@ -618,8 +624,8 @@
         const canvas = document.querySelector("#capture-video-thumbnail");
         const blockBody = document.querySelector('#block-body');
         blockBody.style.display = 'block'
-        canvas.style.opacity = 1;
-        canvas.style.display = 'block';
+        // canvas.style.opacity = 1;
+        // canvas.style.display = 'block';
 
         // Draw the thumbnailz
         const previousCurrentTime = video.currentTime
@@ -649,6 +655,25 @@
             }, 0);
             */
         }, 500);
+        // HOw declenche manual ????
+
+        anime.timeline()
+            .add({
+                targets: canvas,
+                translateX: [270, -270],
+                opacity: [0,1],
+                easing: "linear",
+                duration: 300,
+                delay: 700 // 200 + 30
+            })
+            .add({
+                targets: canvas,
+                translateX: [-270, 270],
+                opacity: [1,0],
+                easing: "linear",
+                duration: 1000,
+                delay: 1500 // 200 + 30
+            })
 
         // Reset previous video options
         setTimeout(() => {
@@ -658,11 +683,11 @@
         }, 700);
 
         setTimeout(() => {
-            canvas.style.opacity = 0;
+            // canvas.style.opacity = 0;
         }, 2000);
 
         setTimeout(() => {
-            canvas.style.display = 'none';
+            // canvas.style.display = 'none';
         }, 5000);
 
         return imageUrl;
