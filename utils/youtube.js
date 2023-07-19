@@ -35,7 +35,31 @@
         let blockBody;
         if (blockBodyId) {
             blockBody = document.getElementById(blockBodyId);
-            blockBody.style.display = 'block'
+            // blockBody.style.display = 'block'
+
+            if (anime) {
+                anime.timeline()
+                   .add({
+                       targets: blockBody,
+                       opacity: [0,1],
+                       easing: "linear",
+                       duration: 100,
+                       delay: 0,
+                       begin: function() {
+                         document.getElementById(blockBodyId).style.display = 'block';
+                       },
+                   })
+                   .add({
+                       targets: blockBody,
+                       opacity: [1,0],
+                       easing: "linear",
+                       duration: 500,
+                       delay: 700,
+                       complete: function() {
+                         document.getElementById(blockBodyId).style.display = 'none';
+                       },
+                   })
+            }
         }
         // canvas.style.opacity = 1;
         // canvas.style.display = 'block';
@@ -50,8 +74,14 @@
         setTimeout(() => {
             // video.pause()
             const canvasCtx = canvas.getContext("2d")
-            const { xOffset, yOffset, newWidth, newHeight } = canvasUtils.resizeCanvas(video, canvas);
-            canvasCtx.drawImage(video, xOffset, yOffset, newWidth, newHeight);
+            if (canvasUtils) {
+                const { xOffset, yOffset, newWidth, newHeight } = canvasUtils.resizeCanvas(video, canvas);
+                canvasCtx.drawImage(video, xOffset, yOffset, newWidth, newHeight);
+            } else {
+                canvas.width = video.width
+                canvas.height = video.height
+                canvasCtx.drawImage(video, 0, 0, video.width, video.height);
+            }
 
             imageUrl = canvas.toDataURL("image/png");
             // console.log('imageUrl', imageUrl)
@@ -69,8 +99,8 @@
             */
         }, 500);
         // HOw declenche manual ????
-
-        anime.timeline()
+        if (anime) {
+            anime.timeline()
             .add({
                 targets: canvas,
                 translateX: [270, -270],
@@ -87,12 +117,13 @@
                 duration: 1000,
                 delay: 1500 // 200 + 30
             })
+        }
 
         // Reset previous video options
         setTimeout(() => {
             // video.currentTime = previousCurrentTime;
             if (blockBodyId) {
-                blockBody.style.display = 'none'
+                // blockBody.style.display = 'none'
             }
             // video.play()
         }, 700);
