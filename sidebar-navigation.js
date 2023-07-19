@@ -72,14 +72,15 @@ class SideBar {
   }
 
   addButtonToDOM() {
-    const itemsNode = document.querySelector('#items-bookmark');
-		for (var i = 0; i < this.list.length; i++) {
-			const itemNode = document.createElement('div');
-			itemNode.classList.add('item-bookmark');
-			itemNode.classList.add('item-bookmark-anime-' + i);
-			itemNode.innerHTML = `<a class="ml12" href="https://www.youtube.com/watch?v=${this.list[i].id}">${this.list[i].title}</a>`;
-			itemsNode.append(itemNode);
-		}
+      const itemsNode = document.querySelector('#items-bookmark');
+      for (var i = 0; i < this.list.length; i++) {
+          const itemNode = document.createElement('div');
+          itemNode.classList.add('item-bookmark');
+          itemNode.classList.add('item-bookmark-anime-' + i);
+          itemNode.innerHTML = `<a class="ml12" href="https://www.youtube.com/watch?v=${this.list[i].id}">${this.list[i].title}</a>`;
+          itemsNode.append(itemNode);
+      }
+
   }
 
 }
