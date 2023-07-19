@@ -11,6 +11,8 @@
 // @require      https://unpkg.com/hotkeys-js/dist/hotkeys.min.js
 // @require      https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js
 // @resource     injectionSidebarJS https://sabrif31.github.io/utils/sidebar-navigation.js
+// @require      https://sabrif31.github.io/utils/utils/canvas.js
+// @require      https://sabrif31.github.io/utils/utils/youtube.js
 // @grant        GM_getResourceText
 // @grant        GM_addStyle
 // @grant        GM_openInTab
@@ -33,6 +35,7 @@
 (async function() {
     'use strict';
 
+    const debug = true;
 /*
 // @resource     injectionJS1 https://sabrif31.github.io/utils/animated-header-navigation-menu.js
 // @resource     ANIMATED_HEADER_CSS https://sabrif31.github.io/utils/animated-header-navigation-menu.css
@@ -63,7 +66,7 @@
         const localGetItem = localStorage.getItem('youtube-bookmark')
         if (localGetItem) {
             const localStorageData = JSON.parse(localGetItem)
-            const youtubeId = youtube_parser(document.location.href)
+            const youtubeId = youtubeUtils.parserVideoId(document.location.href)
             // const videoTitle = document.querySelector('#above-the-fold yt-formatted-string').innerText
             var a = document.createElement("a");
             document.body.appendChild(a);
@@ -192,242 +195,7 @@
     // script_inject_js1.inject();
     script_inject_sidebar.inject();
 
-    GM_addStyle(`
-            #bookmark-container {
-                display: flex;
-                align-items: center;
-                justify-content: flex-end;
-                flex-direction: row-reverse;
-                position: absolute;
-                right: 0;
-                z-index: 305;
-            }
-            #bookmark, #bookmark-add-button {
-                font-size: 12px;
-                height:32px !important;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background: transparent;
-                border: none;
-                cursor: pointer;
-                transition: 0.1s;
-                opacity: 0.7;
-                transform: scale(1);
-            }
-            #bookmark:hover, #bookmark-add-button:hover {
-                opacity: 1;
-                transform: scale(1.1);
-            }
-
-            #bookmark-name {
-                font-size: 12px;
-                background-color: transparent;
-                border: 1px solid #313131;
-                border-radius: 5px;
-                height: 28px !important;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                outline: none;
-                padding-left: 5px;
-                color: #c7c7c7;
-            }
-            #bookmark-form {
-                display: flex;
-                align-items: center;
-                visibility: hidden;
-                opacity: 0;
-                width: 0;
-                transition: visibility 0.25s, opacity 0.25s, width 0.1s;
-            }
-
-            #bookmark-add-button[disabled] {
-                opacity: 0.2;
-            }
-
-
-            .bookmark-select-menu {
-                color: rgb(69, 69, 69) !important;
-                background-color: transparent;
-                border: 1px solid #2f2f2f;
-                border-radius: 5px;
-                min-width:135px;
-                cursor:pointer;
-                height:32px !important;
-                font-size: 12px;
-                max-width: 135px;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                text-align: left;
-                vertical-align: middle;
-            }
-            .bookmark-select-menu .bookmark-select-btn {
-              display: flex;
-              height: 32px;
-              font-size: 12px;
-              font-weight: 400;
-              border-radius: 8px;
-              align-items: center;
-              cursor: pointer;
-              justify-content: space-between;
-              box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-              padding-left:5px;
-              position: relative;
-              color: #c7c7c7;
-            }
-
-            .bookmark-select-menu .bookmark-option-text {
-                display: flex;
-                align-items: center;
-                color: #c7c7c7;
-            }
-            .bookmark-select-menu .bookmark-options .bookmark-option-text svg {
-                position: absolute;
-                right: 0;
-            }
-            .bookmark-select-menu .bookmark-option-text svg {
-              transform: rotate(0deg);
-              transition: 0.3s;
-            }
-            .bookmark-select-menu.active .bookmark-option-text svg {
-              transform: rotate(90deg);
-            }
-            .bookmark-select-menu .bookmark-options .bookmark-option-text svg path {
-                transition: 0.3s;
-            }
-            .bookmark-select-menu .bookmark-options .bookmark-option-text svg:hover path {
-                fill: #ff0000;
-                stroke: #ff0000 !important;
-                transition: 0.3s;
-            }
-            .bookmark-select-menu .bookmark-select-btn .bookmark-option-text svg {
-              margin-left: 5px;
-              transition: transform 0.3s;
-              position: absolute;
-              right: 0px;
-            }
-
-            .bookmark-select-menu .bookmark-options {
-              /*overflow-y: auto;*/
-              max-height: 295px;
-              margin-top: 4px;
-              left: -5px;
-              /*border-radius: 0 0 8px 8px;*/
-              border-radius: 8px;
-              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-              animation-name: fadeInDown;
-              -webkit-animation-name: fadeInDown;
-              animation-duration: 0.35s;
-              animation-fill-mode: both;
-              -webkit-animation-duration: 0.35s;
-              -webkit-animation-fill-mode: both;
-              background-color: #181a1b;
-              display: none;
-              flex-direction: column;
-              position: absolute;
-              width: 100%;
-            }
-            .bookmark-select-menu .bookmark-options .bookmark-option {
-              display: flex;
-              height: 36px;
-              cursor: pointer;
-              align-items: center;
-              padding-left: 5px;
-              border-radius: 8px;
-              transition: color 0.3s, background 0.3s;
-            }
-            .bookmark-select-menu .bookmark-options .bookmark-option:hover {
-              background: #1e1e1e;
-              color: #252424;
-            }
-
-            .bookmark-select-menu .bookmark-options .bookmark-option:hover .bookmark-option-text {
-              color: #ffffff;
-            }
-
-            .bookmark-select-menu .bookmark-options .bookmark-option i {
-              font-size: 25px;
-              margin-right: 12px;
-            }
-
-            .bookmark-select-menu.active .bookmark-select-btn i {
-              transform: rotate(-180deg);
-              transition: 0.3s;
-            }
-
-            .bookmark-select-menu .bookmark-option-text .selected-text {
-              max-width: 110px;
-              text-overflow: ellipsis;
-              display: block;
-              overflow: hidden;
-              color: #c7c7c7;
-            }
-
-            .bookmark-select-menu.active .bookmark-options {
-              display: block;
-              opacity: 0;
-              z-index: 10;
-              animation-name: fadeInUp;
-              -webkit-animation-name: fadeInUp;
-              animation-duration: 0.4s;
-              animation-fill-mode: both;
-              -webkit-animation-duration: 0.4s;
-              -webkit-animation-fill-mode: both;
-              display: flex;
-            }
-
-            @keyframes fadeInUp {
-              from {
-                transform: translate3d(0, 30px, 0);
-              }
-              to {
-                transform: translate3d(0, 0, 0);
-                opacity: 1;
-              }
-            }
-            @keyframes fadeInDown {
-              from {
-                transform: translate3d(0, 0, 0);
-                opacity: 1;
-              }
-              to {
-                transform: translate3d(0, 20px, 0);
-                opacity: 0;
-              }
-            }
-            .no-cursor {
-                 pointer-events: none;
-            }
-
-           #download-link {
-                background-color: #000000d9;
-               border: none;
-               padding: 8px;
-               border-radius: 0px 0px 5px 5px;
-               cursor: pointer;
-               color: #c5c5c5;
-               position:absolute;
-               left: 50%;
-               top: 80%;
-               z-index: 2023;
-               transition: 0.2s;
-           }
-           #download-link:hover {
-               border-radius: 0px 0px 5px 5px;
-               cursor: pointer;
-               color: #ffffff;
-           }
-           #capture-video-thumbnail {
-               position:fixed;
-               top: 0;
-               right: -270px;
-               transform: translateX(270px);
-               z-index: 2024;
-               opacity: 0;
-               /*transition: 2s;*/
-           }
-            `);
+    GM_addStyle(``);
 
     const arrowSvg = `<?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#6f6f6f"><path d="M9 6l6 6-6 6" stroke="#6f6f6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>`
     const cancelSvg = `<?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#6f6f6f" data-darkreader-inline-color="" style="--darkreader-inline-color: #e8e6e3;"><path d="M6.758 17.243L12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243" stroke="#6f6f6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-darkreader-inline-stroke="" style="--darkreader-inline-stroke: #6f6f6f;"></path></svg>`
@@ -547,7 +315,7 @@
             const localGetItem = localStorage.getItem('youtube-bookmark')
             if (localGetItem) {
                 const localStorageData = JSON.parse(localGetItem)
-                const youtubeId = youtube_parser(document.location.href)
+                const youtubeId = youtubeUtils.parserVideoId(document.location.href)
                 if (localStorageData[youtubeId]) {
                     const newLocalStorageDataBookmark = localStorageData[youtubeId].bookmark.filter(item => Number(item.secs) !== Number(selectedItem.getAttribute('data-secs')));
                     await localStorage.setItem('youtube-bookmark', JSON.stringify({ ...localStorageData, [youtubeId]: {
@@ -558,12 +326,6 @@
                 }
             }
         }
-    }
-
-    function youtube_parser(url){
-        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/
-        var match = url.match(regExp)
-        return (match&&match[7].length==11)? match[7] : false
     }
 
     /*
@@ -588,118 +350,11 @@
     }
     */
 
-    /**
-    * USE RESIZE CANVAS
-    * <canvas id="my-canvas" width="480" height="270" />
-    * const canvasCtx = canvas.getContext("2d")
-    * const { xOffset, yOffset, newWidth, newHeight } = resizeCanvas(video, canvas);
-    * canvasCtx.drawImage(video, xOffset, yOffset, newWidth, newHeight);
-    */
-    function resizeCanvas(srcNode, canvasNode) {
-        var wrh = srcNode.width / srcNode.height;
-        var newWidth = canvasNode.width;
-        var newHeight = newWidth / wrh;
-        if (newHeight > canvasNode.height) {
-            newHeight = canvasNode.height;
-            newWidth = newHeight * wrh;
-        }
-        var xOffset = newWidth < canvasNode.width ? ((canvasNode.width - newWidth) / 2) : 0;
-        var yOffset = newHeight < canvasNode.height ? ((canvasNode.height - newHeight) / 2) : 0;
-
-        return {
-            xOffset,
-            yOffset,
-            newWidth,
-            newHeight
-        }
-    }
-
-
     document.body.insertAdjacentHTML('beforeend', `<canvas width="480" height="270" id="capture-video-thumbnail" />`);
     document.body.insertAdjacentHTML('beforeend', `<div id="block-body" style='position:absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2025; background-color: rgba(0,0,0,0.5); display: none;' />`);
-    document.body.insertAdjacentHTML('beforeend', `<button id='download-link'>Test capture</button>`);
-
-    async function thumbnailCapture() {
-        const video = document.querySelector('video');
-        const canvas = document.querySelector("#capture-video-thumbnail");
-        const blockBody = document.querySelector('#block-body');
-        blockBody.style.display = 'block'
-        // canvas.style.opacity = 1;
-        // canvas.style.display = 'block';
-
-        // Draw the thumbnailz
-        const previousCurrentTime = video.currentTime
-        let imageUrl = ''
-        video.width = video.videoWidth;
-        video.height = video.videoHeight;
-        video.currentTime = 10; // video.duration * 0.25; = 1/4 video
-
-        setTimeout(() => {
-            video.pause()
-            const canvasCtx = canvas.getContext("2d")
-            const { xOffset, yOffset, newWidth, newHeight } = resizeCanvas(video, canvas);
-            canvasCtx.drawImage(video, xOffset, yOffset, newWidth, newHeight);
-
-            imageUrl = canvas.toDataURL("image/png");
-            // console.log('imageUrl', imageUrl)
-
-            /*
-            // Show data:image blob in new tab
-            var w = window.open("about:blank");
-            setTimeout(() => {
-                w.document.body.appendChild(w.document.createElement('iframe')).src = imageUrl;
-                w.document.body.style.margin = 0;
-                w.document.getElementsByTagName("iframe")[0].style.width = '100%';
-                w.document.getElementsByTagName("iframe")[0].style.height = '100%';
-                w.document.getElementsByTagName("iframe")[0].style.border = 0;
-            }, 0);
-            */
-        }, 500);
-        // HOw declenche manual ????
-
-        anime.timeline()
-            .add({
-                targets: canvas,
-                translateX: [270, -270],
-                opacity: [0,1],
-                easing: "linear",
-                duration: 300,
-                delay: 700 // 200 + 30
-            })
-            .add({
-                targets: canvas,
-                translateX: [-270, 270],
-                opacity: [1,0],
-                easing: "linear",
-                duration: 1000,
-                delay: 1500 // 200 + 30
-            })
-
-        // Reset previous video options
-        setTimeout(() => {
-            video.currentTime = previousCurrentTime;
-            blockBody.style.display = 'none'
-            video.play()
-        }, 700);
-
-        setTimeout(() => {
-            // canvas.style.opacity = 0;
-        }, 2000);
-
-        setTimeout(() => {
-            // canvas.style.display = 'none';
-        }, 5000);
-
-        return imageUrl;
-    }
+    if (debug) document.body.insertAdjacentHTML('beforeend', `<button id='download-link'>Test capture</button>`);
 
     if (document.body) {
-        const video = document.querySelector('video');
-        const getBoundingClientRectVideo = video.getBoundingClientRect()
-        const btnCapture = document.querySelector('#download-link');
-        btnCapture.style.top = getBoundingClientRectVideo.top + 'px'
-        btnCapture.style.left = getBoundingClientRectVideo.right - btnCapture.clientWidth - (getBoundingClientRectVideo.x / 2) + 2 + 'px'
-        btnCapture.addEventListener('click', () => thumbnailCapture())
     } else {
         // document.addEventListener('DOMContentLoaded', process);
     }
@@ -723,6 +378,14 @@
     *****************************************************************
     *****************************************************************/
     const initBookmarkTimeYT = () => {
+        const video = document.querySelector('video');
+        const getBoundingClientRectVideo = video.getBoundingClientRect()
+        if (debug) {
+            const btnCapture = document.querySelector('#download-link');
+            btnCapture.style.top = getBoundingClientRectVideo.top + 'px'
+            btnCapture.style.left = getBoundingClientRectVideo.right - btnCapture.clientWidth - (getBoundingClientRectVideo.x / 2) + 2 + 'px'
+            btnCapture.addEventListener('click', () => youtubeUtils.thumbnailCapture('capture-video-thumbnail', 'block-body'))
+        }
         const list = localStorage.getItem('youtube-bookmark')
         if (list) {
             // var btn = new NavHeaderYTBookmark(Object.keys(JSON.parse(list))) // eslint-disable-line
@@ -766,7 +429,7 @@
         if (localGetItem) {
             // Load bookmark list for the video
             const localStorageData = JSON.parse(localGetItem)
-            const youtubeId = youtube_parser(document.location.href)
+            const youtubeId = youtubeUtils.parserVideoId(document.location.href)
 
             if (localStorageData[youtubeId]) {
                 const options = localStorageData[youtubeId]
@@ -828,7 +491,7 @@
         addBookmarkButton.disabled = 'true'
         addBookmarkButton.addEventListener('click', (e) => {
             const bookmarkName = document.getElementById('bookmark-name')
-            const youtubeId = youtube_parser(document.location.href) // Get youtube ID
+            const youtubeId = youtubeUtils.parserVideoId(document.location.href) // Get youtube ID
             const localGetItem = localStorage.getItem('youtube-bookmark')
             let localStorageData = {}
             if (localGetItem) localStorageData = JSON.parse(localGetItem)
@@ -866,6 +529,7 @@
         })
         bookmarkForm.append(addBookmarkButton)
 
+        // console.log('window.canvasUtils', window.canvasUtils()?.resizeCanvas())
         /**
         * Hotkeys
         **/
