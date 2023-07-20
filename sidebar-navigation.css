@@ -156,6 +156,7 @@
   height: 80px;
   width: 250px;
   cursor: pointer;
+  margin-bottom: 8px;
 }
 .list-navigation img {
   position: absolute;
