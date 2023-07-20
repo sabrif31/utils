@@ -75,11 +75,10 @@ class SideBar {
       const itemsNode = document.querySelector('#items-bookmark');
       for (var i = 0; i < this.list.length; i++) {
           const divElt = document.createElement('div');
-          divElt.classList.add('list-navigation');
 
           const img = document.createElement('img');
           img.altText = "Thumbnail Video"
-          img.src = this.list?.[i]?.thumbnail;
+          img.src =this.list?.[i]?.thumbnail;
           img.width = 250
           divElt.append(img);
 

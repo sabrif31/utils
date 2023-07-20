@@ -71,19 +71,19 @@
         video.height = video.videoHeight;
         // video.currentTime = 10; // video.duration * 0.25; = 1/4 video
 
+        const canvasCtx = canvas.getContext("2d")
+        if (canvasUtils) {
+            const { xOffset, yOffset, newWidth, newHeight } = canvasUtils.resizeCanvas(video, canvas);
+            canvasCtx.drawImage(video, xOffset, yOffset, newWidth, newHeight);
+        } else {
+            canvas.width = video.width
+            canvas.height = video.height
+            canvasCtx.drawImage(video, 0, 0, video.width, video.height);
+        }
+
+        imageUrl = canvas.toDataURL("image/png");
         setTimeout(() => {
             // video.pause()
-            const canvasCtx = canvas.getContext("2d")
-            if (canvasUtils) {
-                const { xOffset, yOffset, newWidth, newHeight } = canvasUtils.resizeCanvas(video, canvas);
-                canvasCtx.drawImage(video, xOffset, yOffset, newWidth, newHeight);
-            } else {
-                canvas.width = video.width
-                canvas.height = video.height
-                canvasCtx.drawImage(video, 0, 0, video.width, video.height);
-            }
-
-            imageUrl = canvas.toDataURL("image/png");
             // console.log('imageUrl', imageUrl)
 
             /*
